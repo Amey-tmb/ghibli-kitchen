@@ -1,0 +1,187 @@
+@import url("https://fonts.googleapis.com/css2?family=Courgette&family=DM+Serif+Display&family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Ghibli theme (default) */
+    --color-cream: #fdf5e6;
+    --color-sage: #c9d8c5;
+    --color-cocoa: #b08968;
+    --color-cocoa-dark: #5e4632;
+    --color-dark-cream: #1a1a1a;
+    --color-dark-sage: #4a5d4a;
+    --color-dark-cocoa: #d4a574;
+    --color-dark-cocoa-dark: #f5e6d3;
+  }
+
+  [data-color-theme="lavender"] {
+    --color-cream: #f5f0ff;
+    --color-sage: #e8d5ff;
+    --color-cocoa: #b794d4;
+    --color-cocoa-dark: #6b4c85;
+    --color-dark-cream: #1a1620;
+    --color-dark-sage: #3d2f4d;
+    --color-dark-cocoa: #c9a8e8;
+    --color-dark-cocoa-dark: #f0e5ff;
+  }
+
+  [data-color-theme="ocean"] {
+    --color-cream: #e6f5f5;
+    --color-sage: #b8e0d8;
+    --color-cocoa: #5fa8a3;
+    --color-cocoa-dark: #2d5a57;
+    --color-dark-cream: #1a2323;
+    --color-dark-sage: #2d4a47;
+    --color-dark-cocoa: #7dd3cc;
+    --color-dark-cocoa-dark: #e0f5f3;
+  }
+
+  [data-color-theme="sunset"] {
+    --color-cream: #fff5e6;
+    --color-sage: #ffd9b3;
+    --color-cocoa: #ff8c42;
+    --color-cocoa-dark: #cc6e35;
+    --color-dark-cream: #1a1610;
+    --color-dark-sage: #4a3d2d;
+    --color-dark-cocoa: #ffa366;
+    --color-dark-cocoa-dark: #ffe6cc;
+  }
+
+  body {
+    @apply antialiased;
+    background-color: var(--color-cream);
+    color: var(--color-cocoa-dark);
+    background-image: radial-gradient(
+        circle at top left,
+        color-mix(in srgb, var(--color-cream) 95%, white),
+        var(--color-cream)
+      ),
+      radial-gradient(
+        circle at bottom right,
+        color-mix(in srgb, var(--color-sage) 20%, var(--color-cream)),
+        var(--color-cream)
+      );
+    background-attachment: fixed;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .dark body {
+    background-color: var(--color-dark-cream);
+    color: var(--color-dark-cocoa-dark);
+    background-image: radial-gradient(
+        circle at top left,
+        color-mix(in srgb, var(--color-dark-cream) 95%, black),
+        var(--color-dark-cream)
+      ),
+      radial-gradient(
+        circle at bottom right,
+        color-mix(in srgb, var(--color-dark-sage) 20%, var(--color-dark-cream)),
+        var(--color-dark-cream)
+      );
+  }
+
+  /* Font styles */
+  [data-font="display"] {
+    --font-display: "DM Serif Display", serif;
+    --font-handwritten: "Courgette", cursive;
+  }
+
+  [data-font="handwritten"] {
+    --font-display: "Courgette", cursive;
+    --font-handwritten: "Courgette", cursive;
+  }
+
+  [data-font="inter"] {
+    --font-display: "Inter", sans-serif;
+    --font-handwritten: "Inter", sans-serif;
+  }
+
+  [data-font="playfair"] {
+    --font-display: "Playfair Display", serif;
+    --font-handwritten: "Playfair Display", serif;
+  }
+}
+
+@layer components {
+  .ghibli-card {
+    @apply rounded-3xl shadow-soft backdrop-blur-md;
+    background-color: color-mix(in srgb, var(--color-cream) 95%, white);
+    border-color: color-mix(in srgb, white 70%, transparent);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+  .dark .ghibli-card {
+    background-color: color-mix(in srgb, var(--color-dark-cream) 95%, black);
+    border-color: color-mix(in srgb, var(--color-dark-sage) 30%, transparent);
+  }
+
+  .ghibli-button {
+    @apply inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-medium tracking-wide shadow-soft transition hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2;
+    background-color: var(--color-cocoa);
+    color: var(--color-cream);
+    transition: all 0.2s ease;
+  }
+
+  .ghibli-button:hover {
+    background-color: var(--color-cocoa-dark);
+  }
+
+  .dark .ghibli-button {
+    background-color: var(--color-dark-cocoa);
+    color: var(--color-dark-cream);
+  }
+
+  .dark .ghibli-button:hover {
+    background-color: color-mix(in srgb, var(--color-dark-cocoa) 80%, transparent);
+  }
+
+  .ghibli-badge {
+    @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-medium;
+    background-color: color-mix(in srgb, var(--color-sage) 70%, transparent);
+    color: color-mix(in srgb, var(--color-cocoa-dark) 90%, transparent);
+  }
+
+  .dark .ghibli-badge {
+    background-color: color-mix(in srgb, var(--color-dark-sage) 50%, transparent);
+    color: var(--color-dark-cocoa-dark);
+  }
+
+  .ghibli-input {
+    @apply w-full rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 transition-all;
+    border-color: color-mix(in srgb, var(--color-sage) 50%, transparent);
+    background-color: color-mix(in srgb, white 80%, transparent);
+    color: var(--color-cocoa-dark);
+  }
+
+  .ghibli-input::placeholder {
+    color: color-mix(in srgb, var(--color-cocoa-dark) 50%, transparent);
+  }
+
+  .ghibli-input:focus {
+    border-color: var(--color-cocoa);
+    ring-color: color-mix(in srgb, var(--color-cocoa) 20%, transparent);
+  }
+
+  .dark .ghibli-input {
+    border-color: color-mix(in srgb, var(--color-dark-sage) 50%, transparent);
+    background-color: color-mix(in srgb, var(--color-dark-cream) 30%, transparent);
+    color: var(--color-dark-cocoa-dark);
+  }
+
+  .dark .ghibli-input::placeholder {
+    color: color-mix(in srgb, var(--color-dark-cocoa-dark) 60%, transparent);
+  }
+
+  .dark .ghibli-input:focus {
+    border-color: var(--color-dark-cocoa);
+    ring-color: color-mix(in srgb, var(--color-dark-cocoa) 30%, transparent);
+  }
+
+  .ghibli-textarea {
+    @apply ghibli-input min-h-[80px] resize-y;
+  }
+}
+
